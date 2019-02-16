@@ -12,15 +12,9 @@
  */
 
 #include "at.h"
-#include "stdint.h"
-#include <stdarg.h>
-#include "at_errors.h"
-#include "at_debug.h"
-#include "at_user_opt.h"
-#include "eprintf.h"
 
-extern int user_put_char(int c);
 extern AT_cmd_handler_t cmd_handler[];
+extern uint32_t get_cmd_handler_number(void);
 
 uint8_t AT_cmd_buffer_temp[AT_CMD_LINE_LEN + 1] = {0};
 uint8_t cmd_name_tmp[AT_CMD_CHAR_NUM_MAX + 2] = {0}; //+2 for "\r\n"
@@ -39,15 +33,6 @@ static void AT_String_temp_init(void)
 
 	current_opt_cut = 0;
 	at_str_len = 0;
-}
-
-void AT_RSP_process(char *format, ...)
-{
-	va_list ap;
-
-	va_start(ap, format);
-	evprintf(user_put_char, format, ap);
-	va_end(ap);
 }
 
 static ATSta_t GetATCmdStr(char *input_str)
@@ -199,7 +184,7 @@ static ATSta_t GetCMDIndex(uint8_t *cmd_name, uint8_t *cmd_index)
 	return AT_STA_ERROR_NOT_SUPPORT_CMD;
 }
 
-static AT_print_cmdStr_info(void)
+static void AT_print_cmdStr_info(void)
 {
 	at_printf("cmd string:%s", (char *)AT_str_temp.AT_cmd_str);
 	at_printf("cmd name:%s\r\n", cmd_name_tmp);
@@ -214,7 +199,6 @@ static ATSta_t ATCMDLineAnalyzer(void)
 {
 	uint8_t cmd_index = 0;
 	ATSta_t result;
-	char *p;
 
 	at_debug_assert((('A' == AT_str_temp.AT_cmd_str[0]) && ('T' == AT_str_temp.AT_cmd_str[1])));
 
@@ -227,8 +211,8 @@ static ATSta_t ATCMDLineAnalyzer(void)
 	{
 		current_opt_cut = 0;
 		result = FindParamPoint_without_plus(&current_opt_cut);
-		strcpy(cmd_name_tmp, AT_str_temp.AT_cmd_str);
-		cmd_name_tmp[strlen(cmd_name_tmp) - 2] = '\0'; //add end of string
+		strcpy((char*)cmd_name_tmp, (const char*)AT_str_temp.AT_cmd_str);
+		cmd_name_tmp[strlen((char*)cmd_name_tmp) - 2] = '\0'; //add end of string
 	}
 
 	if (AT_STA_SUCCESS == result)

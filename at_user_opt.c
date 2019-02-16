@@ -21,21 +21,21 @@ int user_put_char(int c)
 {
     //as user plantform
     printf("%c",c);
+	return 0;
 }
 
-ATSta_t NULL_handler(AT_str_t *cmd_str)
+static void NULL_handler(AT_str_t *cmd_str)
 {
 	at_printf("NULL_handler\r\n");
-    return AT_STA_SUCCESS;
 }
 
-ATSta_t at_str_handler(AT_str_t *cmd_str)
+static void at_str_handler(AT_str_t *cmd_str)
 {
 	at_printf("at_str_handler\r\n");
     AT_RSP_process("\r\nOK\r\n");
 }
 
-ATSta_t at_test_str_handler(AT_str_t *cmd_str)
+static void at_test_str_handler(AT_str_t *cmd_str)
 {
 	uint32_t test_data = 0x01234567;
 	uint32_t rec_write_param1 = 0;

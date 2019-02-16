@@ -12,7 +12,7 @@
  */
 
 #include "stdint.h"
-#include "strings.h"
+#include "string.h"
 
 void ATCharUpper(uint8_t *at_string)
 {

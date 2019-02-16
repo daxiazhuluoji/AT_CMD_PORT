@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000101000000
-UnitCount=12
+UnitCount=11
 
 [VersionInfo]
 Major=1
@@ -51,16 +51,6 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit3]
-FileName=..\AT_cmd\at_debug.h.gch
-CompileCpp=0
-Folder=at_cmd
-Compile=0
-Link=0
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
 FileName=..\AT_cmd\at_errors.h
 CompileCpp=0
 Folder=at_cmd
@@ -70,8 +60,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit5]
+[Unit4]
 FileName=..\AT_cmd\at_tools.c
+CompileCpp=0
+Folder=at_cmd
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
+FileName=..\AT_cmd\at_tools.h
 Folder=at_cmd
 Compile=1
 Link=1
@@ -81,16 +81,6 @@ BuildCmd=
 CompileCpp=0
 
 [Unit6]
-FileName=..\AT_cmd\at_tools.h
-CompileCpp=0
-Folder=at_cmd
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit7]
 FileName=..\main.c
 CompileCpp=0
 Folder=
@@ -100,10 +90,20 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit8]
+[Unit7]
 FileName=..\AT_cmd\at.h
 CompileCpp=0
 Folder=at_cmd
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit8]
+FileName=..\at_user_opt.c
+CompileCpp=0
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -131,16 +131,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=..\at_user_opt.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit10]
 FileName=..\at_user_opt.h
 CompileCpp=0
 Folder=
@@ -150,8 +140,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit11]
+[Unit10]
 FileName=..\AT_cmd\eprintf\eprintf.c
+CompileCpp=0
+Folder=at_cmd/eprintf
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=..\AT_cmd\eprintf\eprintf.h
 CompileCpp=0
 Folder=at_cmd/eprintf
 Compile=1
