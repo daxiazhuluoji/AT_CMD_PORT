@@ -13,8 +13,9 @@
 
 #include "stdint.h"
 #include "stdio.h"
-#include "at.h"
 #include "stdlib.h"
+#include "at.h"
+
 
 //very important function must be creating for uer plantform
 int user_put_char(int c) 
@@ -54,8 +55,8 @@ static void at_test_str_handler(AT_str_t *cmd_str)
 		break;
 
 	case AT_WRITE_CMD:
-		rec_write_param1 = strtol(cmd_str->AT_cmd_param,&pTemp,10);
-		rec_write_param2 = strtol(pTemp+1,&pTemp,16);
+		rec_write_param1 = strtol((const char*)cmd_str->AT_cmd_param,&pTemp,10);
+		rec_write_param2 = strtol((const char*)pTemp+1,&pTemp,16);
 		AT_RSP_process("\r\n+TEST:%d,%x\r\n",rec_write_param1,rec_write_param2);
 		AT_RSP_process("\r\nOK\r\n");
 		break;
