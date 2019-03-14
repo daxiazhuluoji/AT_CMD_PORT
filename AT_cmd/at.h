@@ -33,13 +33,14 @@
 typedef enum
 {
 	//confirm the cmd be supported
-	AT_TEST_CMD, 
+	AT_TEST_CMD,     //AT+CMD=?\r\n
 	//read value
-	AT_READ_CMD,
+	AT_READ_CMD,     //AT+CMD?
 	//wite value 
-	AT_WRITE_CMD,
+	AT_WRITE_CMD,    //AT+CMD=param\r\n
 	//execute cmd
-	AT_EXECUT_CMD,
+	AT_EXECUT_CMD,   //AT+CMD\r\n or CMD\r\n
+	
 	//invalid cmd
 	AT_INVALID_CMD
 } AT_cmd_t;

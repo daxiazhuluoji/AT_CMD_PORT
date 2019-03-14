@@ -15,8 +15,11 @@
 #ifndef __AT_TOOLS_H__
 #define __AT_TOOLS_H__
 
+#include "stdint.h"
+
 void ATCharUpper(uint8_t *at_string);
 char hex2char(uint8_t data);
 char *itoa(int num, char *str, int radix);
+void StrToHex(uint8_t *pbDest, uint8_t *pbSrc, int nLen);
 
 #endif

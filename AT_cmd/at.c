@@ -138,17 +138,18 @@ static ATSta_t get_at_cmd_type(void)
 	{
 	case '=':
 		if ('?' == AT_str_temp.AT_cmd_str[current_opt_cut + 1])
-			if('\r' == AT_str_temp.AT_cmd_str[current_opt_cut + 2] && 
-			   '\n' == AT_str_temp.AT_cmd_str[current_opt_cut + 3])
 		{
-			current_opt_cut += 2;
-			AT_str_temp.at_cmd_type = AT_TEST_CMD;
-		}
-		else
-		{
+			if (('\r' == AT_str_temp.AT_cmd_str[current_opt_cut + 2]) && ('\n' == AT_str_temp.AT_cmd_str[current_opt_cut + 3]))
+			{
+				current_opt_cut += 2;
+				AT_str_temp.at_cmd_type = AT_TEST_CMD;
+			}
+			else
+			{
 				result = AT_STA_ERROR_PARAM_IVALID;
 				AT_str_temp.at_cmd_type = AT_INVALID_CMD;
-			}	
+			}
+		}
 		else
 		{
 			current_opt_cut += 1;
@@ -158,21 +159,17 @@ static ATSta_t get_at_cmd_type(void)
 		break;
 
 	case '?':
-		//current_opt_cut += 1;
-		//AT_str_temp.at_cmd_type = AT_READ_CMD;
-
-		if ('\r' == AT_str_temp.AT_cmd_str[current_opt_cut + 1] && 
-			'\n' == AT_str_temp.AT_cmd_str[current_opt_cut + 2])
+		if (('\r' == AT_str_temp.AT_cmd_str[current_opt_cut + 1]) && ('\n' == AT_str_temp.AT_cmd_str[current_opt_cut + 2]))
 		{
-		current_opt_cut += 1;
-		AT_str_temp.at_cmd_type = AT_READ_CMD;
+			current_opt_cut += 1;
+			AT_str_temp.at_cmd_type = AT_READ_CMD;
 		}
 		else
 		{
 			result = AT_STA_ERROR_PARAM_IVALID;
 			AT_str_temp.at_cmd_type = AT_INVALID_CMD;
 		}
-		
+
 		break;
 
 	case '\r':
@@ -239,8 +236,8 @@ static ATSta_t ATCMDLineAnalyzer(void)
 	{
 		current_opt_cut = 0;
 		result = FindParamPoint_without_plus(&current_opt_cut);
-		strcpy((char*)cmd_name_tmp, (const char*)AT_str_temp.AT_cmd_str);
-		cmd_name_tmp[strlen((char*)cmd_name_tmp) - 2] = '\0'; //add end of string
+		strcpy((char *)cmd_name_tmp, (const char *)AT_str_temp.AT_cmd_str);
+		cmd_name_tmp[strlen((char *)cmd_name_tmp) - 2] = '\0'; //add end of string
 	}
 
 	if (AT_STA_SUCCESS == result)
