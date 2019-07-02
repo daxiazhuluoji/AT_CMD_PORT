@@ -19,7 +19,7 @@ void ATCharUpper(uint8_t *at_string)
 {
 	uint32_t i;
 	uint8_t *p = at_string;
-	uint8_t str_len = sizeof(at_string);
+	uint8_t str_len = strlen((const char*)at_string);
 
 	for (i = 0; i < str_len; i++)
 	{
